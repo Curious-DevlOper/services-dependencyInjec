@@ -1,32 +1,24 @@
 import { Component } from '@angular/core';
+import { AccountsService } from './accounts.service';
 //access some data from an array of users
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  // providers: [ AccountsService]
 })
 export class AppComponent {
   title = 'services-dependencyInjection';
-  accounts = [
-    {
-      name: 'Master Account' ,
-      status: 'active'
-    },
-    {
-      name: 'Test Account' ,
-      status: 'inactive'
-    },
-    {
-      name: 'Hidden Account' ,
-      status: 'Unknown'
-    }
-  ];
+  accounts: {name: string, status: string} [];
+  constructor(private accountsService: AccountsService){}
 
-  onAccountAdded( newAccount: {name: string, status: string}){
-    this.accounts.push(newAccount);
+  ngOnInit(){
+    this.accounts= this.accountsService.accounts;
   }
 
-  onStatusChanged(updateInfo: {id: number, newStatus: string}){
-    this.accounts[updateInfo.id].status = updateInfo.newStatus; 
-}
+  
+
+ 
+
+ 
 }
