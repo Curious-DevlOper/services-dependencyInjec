@@ -20,6 +20,7 @@ export class AccountComponent {
   onSetTo(status: string) {
     this.accountsSrvice.updateAccount(this.id, status);
     //this.loggingService.logStatusChange(status);
+    this.accountsSrvice.statusUpdated.emit(status); //emit an event here and listen t it in newAccount
   }
 
 }
